@@ -5,6 +5,7 @@
     justify-content: center;
     min-height: 100vh;
     padding: 0 2rem;
+    background-color: rgb(255, 255, 255);
 }
 #login .form {
     background-color: rgb(245, 246, 247);
