@@ -64,7 +64,7 @@ const reqHeaders = {
     return api.post("/usuario", reqData, reqHeaders)
 }
 
-// Endpoints Sistemas
+// Endpoints RobosUsuario
 
 export const getSistemas = async (parametros) => {
    console.log(parametros);
@@ -76,12 +76,12 @@ export const getSistemas = async (parametros) => {
         if(parametros.senha) {params.append('senha',parametros.senha)}
     
     let header = {'x-access-token': api.defaults.headers.Authorization}
-    return api.get("/sistemas", {params,headers:  header})
+    return api.get("/RobosUsuario", {params,headers:  header})
 }
 
 export const deleteSistema = async (_id) => {
     let header = {'x-access-token': api.defaults.headers.Authorization}
-    return api.delete(`/sistema/${_id}`, {headers:  header})
+    return api.delete(`/RobosUsuario/${_id}`, {headers:  header})
 }
 
 export const updateSistema = async (_id, descricao,usuario, senha) => {
@@ -100,7 +100,7 @@ export const updateSistema = async (_id, descricao,usuario, senha) => {
         }
     }
     
-    return api.put(`/sistema/${_id}`, reqData, reqHeaders) 
+    return api.put(`/RobosUsuario/${_id}`, reqData, reqHeaders) 
 }
 
 export const saveSistema = async (descricao, usuario, senha) => {
@@ -118,11 +118,11 @@ const reqHeaders = {
         'x-access-token': api.defaults.headers.Authorization,
     }
 }    
-    return api.post("/sistema", reqData, reqHeaders)
+    return api.post("/RobosUsuario", reqData, reqHeaders)
 }
 
 export const getSistemaById = async (_id) => {
     let header = {'x-access-token': api.defaults.headers.Authorization}
-    return api.get(`/sistema/${_id}`, {_id, headers:  header})
+    return api.get(`/RobosUsuario/${_id}`, {_id, headers:  header})
 }
 
