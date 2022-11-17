@@ -1,10 +1,13 @@
+
+
 #header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: right;
     background-color: rgb(255, 255, 255);
-    margin-top: -60px;
+    margin-top: -100px;
+
     
   
 
@@ -14,12 +17,15 @@
 
     background-color: rgb(255, 255, 255);
     padding-top: 5px;
+
+
+  
 }
 
 #gestao {
 
     color: rgb(83, 83, 83);
-    
+    padding-top: 50px;
     text-align: left;
     margin-left: 40px;
 }
@@ -50,4 +56,3 @@
 
 }
 
-.paginacao {}

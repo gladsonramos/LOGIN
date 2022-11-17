@@ -30,6 +30,8 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
+import px2vw from "./px2vw";
+
 
 
 
@@ -55,6 +57,9 @@ const TableTitle = styled.th`
   border-top-width: 2;
   border-right-width:0 ;
   border-left-width:0 ;
+
+
+
 `;
 
 const ContentText = styled.td`
@@ -107,6 +112,9 @@ const TitleWrapper = styled.tr`
 
   height: 42.65px;
   border: 4px solid #4d4f5c;
+
+
+ 
     
   
 `;
@@ -124,6 +132,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-color: white;
   padding: 10px 30px;
+
+  @media (max-width: 768px) {
+    width: ${px2vw(180, 80)};
+  }
 `;
 
 const BuscarTd = styled.td`
@@ -133,6 +145,7 @@ const BuscarTd = styled.td`
   align-items: center;
   justify-content: space-evenly;
   height: 100px;
+  
   
 `;
 
@@ -145,6 +158,8 @@ const EditarWrapper = styled.td`
   border-bottom: solid 1px #f1f1f3;
   
 `;
+
+
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -266,16 +281,18 @@ const HomePage = () => {
   }
 
 
+
   return (
 
 
     <div id="corpo" >
 
 
-<div id="gestao">
-          GESTÃO DE ROBÔS
+      <div id="gestao">
+        GESTÃO DE ROBÔS
+        
 
-        </div>
+      </div>
 
       <div id="header">
 
