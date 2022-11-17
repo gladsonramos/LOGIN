@@ -27,7 +27,7 @@ const LoginPage = () => {
 
         <div id="login">
             <div class="text-holder">
-                <img class="responsive" alt="UNICOOPER" src="./unicooper.png" />
+                <img src="./unicooper.png" />
             </div>
 
             <form className="form" onSubmit={handleSubmit}>
