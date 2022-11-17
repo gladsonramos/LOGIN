@@ -290,7 +290,6 @@ const HomePage = () => {
 
       <div id="gestao">
         GESTÃO DE ROBÔS
-        
 
       </div>
 
