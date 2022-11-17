@@ -26,13 +26,12 @@ const LoginPage = () => {
 
 
         <div id="login">
-
             <div class="text-holder">
-                <p>PORTAL DE ROBÔS UNICOOPER </p>
+                <img class="responsive" alt="UNICOOPER" src="./unicooper.png" />
             </div>
 
             <form className="form" onSubmit={handleSubmit}>
-                <AccountCircleSharpIcon style={{ fontSize: '5ch' }}></AccountCircleSharpIcon>
+                <AccountCircleSharpIcon style={{ fontSize: '5ch' , color: "#808080" }}></AccountCircleSharpIcon>
                 <div className="field">
                     <FormControl fullWidth sx={{ m: 0, width: '17ch' }}>
                         <OutlinedInput
@@ -61,7 +60,7 @@ const LoginPage = () => {
                 </div>
                 <div className="actions">
                     <Button type="submit" variant="contained" endIcon={<LoginIcon />}>
-                        ENTRAR POR FAVOR
+                        ENTRAR
                     </Button>
                 </div>
             </form>

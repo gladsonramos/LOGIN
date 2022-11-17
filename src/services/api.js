@@ -84,12 +84,15 @@ export const deleteSistema = async (_id) => {
     return api.delete(`/RobosUsuario/${_id}`, {headers:  header})
 }
 
-export const updateSistema = async (_id, descricao,usuario, senha) => {
+export const updateSistema = async (_id, descricao,usuario, senha,qtdInicial, qtdFinal) => {
 
     const reqData = {
             descricao,
             usuario,
-            senha
+            senha,
+            qtdInicial,
+            qtdFinal
+
     }
     
     const reqHeaders = {
@@ -103,12 +106,14 @@ export const updateSistema = async (_id, descricao,usuario, senha) => {
     return api.put(`/RobosUsuario/${_id}`, reqData, reqHeaders) 
 }
 
-export const saveSistema = async (descricao, usuario, senha) => {
+export const saveSistema = async (descricao, usuario, senha,qtdInicial, qtdFinal) => {
     
     const reqData = {
         descricao,
         usuario,
-        senha
+        senha,
+        qtdInicial,
+        qtdFinal
 }
 
 const reqHeaders = {

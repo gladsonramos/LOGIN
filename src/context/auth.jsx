@@ -19,6 +19,8 @@ export const AuthProvider = ({children}) => {
     const [descricaoContext, setDescricao] = useState("");
     const [senhaContext, setSenha] = useState("");
     const [usuarioContext, setUsuario] = useState("");
+    const [qtdInicialContext, setQtdInicial] = useState("");
+    const [qtdFinalContext, setQtdFinal] = useState("");
     const [idContext, setId] = useState("");
     const [loading, setLoading] = useState(true)
 
@@ -81,6 +83,8 @@ const getSistema = async (id) => {
         setDescricao(sistema.data.descricao)
         setUsuario(sistema.data.usuario)
         setSenha(sistema.data.senha)
+        setQtdInicial(sistema.data.qtdInicial)
+        setQtdFinal(sistema.data.qtdFinal)
         setId(id)
     }
     else{
@@ -88,8 +92,8 @@ const getSistema = async (id) => {
     }
 }
 
-const update = async (_id, descricao, usuario, senha) => {
-        const response = await updateSistema(_id,descricao, usuario, senha);
+const update = async (_id, descricao, usuario, senha, qtdInicial, qtdFinal) => {
+        const response = await updateSistema(_id,descricao, usuario, senha, qtdInicial, qtdFinal);
         verificarResponse(response);
   };
   const save = async (_id, descricao, usuario, senha) => {
@@ -107,7 +111,8 @@ const update = async (_id, descricao, usuario, senha) => {
   }
     return(
     <AuthContext.Provider value={{authenticated: !!user, user, loading, 
-        descricaoContext, usuarioContext, senhaContext, idContext,
+        descricaoContext, usuarioContext, senhaContext, idContext, qtdInicialContext, 
+        qtdFinalContext,
         getSistema, update, save, login, logout, alterUser, newUser}}>
         {children}
     </AuthContext.Provider>

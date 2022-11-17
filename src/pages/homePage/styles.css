@@ -3,11 +3,28 @@
     flex-direction: row;
     align-items: center;
     justify-content: right;
-    min-height: 9vh;
-    padding: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    margin-top: -60px;
+    
+  
+
 }
 
- #header .botao {
+#corpo {
+
+    background-color: rgb(255, 255, 255);
+    padding-top: 5px;
+}
+
+#gestao {
+
+    color: rgb(83, 83, 83);
+    
+    text-align: left;
+    margin-left: 40px;
+}
+
+#header .botao {
     width: 16%;
     margin: 0.5rem;
 }
@@ -16,23 +33,21 @@
     width: 21%;
     margin: 0.5rem;
 }
- .paginacao {
+
+.paginacao {
     display: flex;
     flex-direction: row;
     background-color: aliceblue;
     justify-content: center;
     padding: 10px;
-    
+
 }
- .paginacao #limit{
-    padding: 15px 
-    10px 5px;
+
+.paginacao #limit {
+    padding: 15px 10px 5px;
     color: black;
     font-weight: bold;
 
 }
-.paginacao{
-    margin: 27px;
 
-}
-
+.paginacao {}

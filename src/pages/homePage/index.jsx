@@ -32,6 +32,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 
 
+
 const WrapperList = styled.div`
   display: flex;
   background-color: #ffffff;
@@ -41,69 +42,87 @@ const WrapperList = styled.div`
 `;
 
 const TableTitle = styled.th`
-  color: rgb(100, 29, 233);
-  background-color: rgb(100, 29, 233);
 
-  color: rgb(255, 255, 255);
-  font-size: 17px;
-  font-family: Source Sans Pro;
+  background-color: #f2f2f2;
+  color:#000000;
+  font-size: 13px;
+  font-family: Arial;
   text-align: center;
   padding-left: 10px;
   width: 100%;
+  border-style: inset;
+  border-bottom-width: 2px;
+  border-top-width: 2;
+  border-right-width:0 ;
+  border-left-width:0 ;
 `;
 
 const ContentText = styled.td`
   background-color: rgb(255, 255, 255);
   font-size: 13px;
-  font-family: Source Sans Pro;
-  padding-left: 1px;
+  font-family: Arial;
   text-align: center;
   width: 100%;
+  border-style: inset;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width:0 ;
+  border-left-width: 0;
 `;
 
 const FilterWrapper = styled.tr`
-  background-color: rgb(100, 29, 233);
+    background-color: #ffffff;
   width: 100%;
 `;
 
 const InputFilter = styled.input`
   width: ${(props) => props.width};
-  height: 32px;
-  margin: 0px 5px;
+  height: 35px;
   border-radius: 4px 4px 4px 4px;
   border: 1px solid #d7dae2;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   color: #4d4f5c;
   font-size: 16px;
-  font-family: Source Sans Pro;
+  font-family: Arial;
+  text-align: center;
+
 `;
 
 const ListWrapper = styled.tr`
   padding: 15px;
   width: 100%;
+
+
   > td {
     background-color: ${(props) => props.backgroundColor}
-    border-bottom: solid 1px #f1f1f3;
     text-align: center;
     width: 100%;
+    
+
   }
+
 `;
 
 const TitleWrapper = styled.tr`
-  background: #eff1fc;
+
   height: 42.65px;
+  border: 4px solid #4d4f5c;
+    
+  
 `;
 
 const BaselineTd = styled.td`
   vertical-align: baseline;
   text-align: center;
+  
+  
 `;
 
 const Wrapper = styled.div`
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  background-color: rgb(100, 29, 233);
+  background-color: white;
   padding: 10px 30px;
 `;
 
@@ -114,6 +133,7 @@ const BuscarTd = styled.td`
   align-items: center;
   justify-content: space-evenly;
   height: 100px;
+  
 `;
 
 const EditarWrapper = styled.td`
@@ -123,11 +143,12 @@ const EditarWrapper = styled.td`
   justify-content: center;
   text-align: center;
   border-bottom: solid 1px #f1f1f3;
+  
 `;
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const { logout,user,getSistema} = useContext(AuthContext);
+  const { logout, user, getSistema } = useContext(AuthContext);
   const [sistemas, setSistemas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [descricao, setDescricao] = useState("");
@@ -142,7 +163,7 @@ const HomePage = () => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-  
+
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -167,19 +188,19 @@ const HomePage = () => {
         return <div className="loading">Carregando...</div>;
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagina, limit]);
 
   const filters = () => {
 
     let queryFilter = {
-      page:pagina,
+      page: pagina,
       limit,
       usuario: usuario ? usuario : null,
       senha: senha ? senha : null,
       descricao: descricao ? descricao : null
     }
-    
+
     return queryFilter
   }
 
@@ -198,7 +219,7 @@ const HomePage = () => {
             (async () => {
               const isDeleted = await deleteSistema(id);
               if (isDeleted.data) {
-                  buscarSistema()
+                buscarSistema()
               }
             })();
           },
@@ -210,139 +231,154 @@ const HomePage = () => {
     });
   };
 
-const atualizarSistema = (id) => {
-  getSistema(id)
-}
-const novoSistema = () => {
-  navigate(`/save`)
-}
+  const atualizarSistema = (id) => {
+    getSistema(id)
+  }
+  const novoSistema = () => {
+    navigate(`/save`)
+  }
 
-const handleLimit = (e) => {
-  setLimit(e.target.value)
-  buscarSistema()
-}
+  const handleLimit = (e) => {
+    setLimit(e.target.value)
+    buscarSistema()
+  }
 
-const handlePage = (e) => {
-   e.preventDefault()
-   if(e.target.tagName !== "path" && e.target.tagName !== "svg"){
-      setPagina(parseInt(e.target.innerText) )
-   }
-   if(e.target.parentNode.ariaLabel === "Go to next page"){
+
+
+  const handlePage = (e) => {
+    e.preventDefault()
+    if (e.target.tagName !== "path" && e.target.tagName !== "svg") {
+      setPagina(parseInt(e.target.innerText))
+    }
+    if (e.target.parentNode.ariaLabel === "Go to next page") {
       const newOffset = Number(pagina) + Number(1);
 
-       setPagina(newOffset)
+      setPagina(newOffset)
 
-   }
-   if(e.target.parentNode.ariaLabel === "Go to previous page"){
-    const newOffset = Number(pagina) - Number(1);
+    }
+    if (e.target.parentNode.ariaLabel === "Go to previous page") {
+      const newOffset = Number(pagina) - Number(1);
 
-    setPagina(newOffset)
+      setPagina(newOffset)
 
-   }
-   buscarSistema()
-}
+    }
+    buscarSistema()
+  }
+
 
   return (
-    <div style={{ marginLeft: "20px" }}>
+
+
+    <div id="corpo" >
+
+
+<div id="gestao">
+          GESTÃO DE ROBÔS
+
+        </div>
+
       <div id="header">
-      <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'left' }}>
-        
-        <Tooltip title="Configurações de Conta">
-          <IconButton
-            className="config"
-            onClick={handleClick}
-            size="medium"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+
+
+        <img class="responsive" alt="UNICOOPER" src="./unicooper.png" />
+
+
+
+        <React.Fragment>
+
+
+          <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'left' }}>
+            <Tooltip title="Configurações de Conta">
+              <IconButton
+                className="config"
+                onClick={handleClick}
+                size="medium"
+                sx={{ ml: 2 }}
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
+                <Avatar sx={{ width: 50, height: 50 }}>{JSON.stringify(user.data.usuario).substring(1, 3).toUpperCase()}</Avatar>
+              </IconButton>
+            </Tooltip>
+          </Box>
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 1,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 10,
+                  height: 10,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 20,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <Avatar sx={{ width: 70, height: 70 }}>{JSON.stringify(user.data.usuario).substring(1,3).toUpperCase()}</Avatar>
-          </IconButton>
-        </Tooltip>
-      </Box>
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 1,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 10,
-              height: 10,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 20,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
- 
-        <MenuItem onClick={() => navigate("user/alter")}>
-        <ListItemIcon>
-          <ManageAccountsIcon fontSize="small" className="minhaConta"/>Alterar Conta
-       </ListItemIcon>
-        </MenuItem>
-        <Divider />
-        {
-        isAdmin &&
-        <MenuItem onClick={() => navigate("user/new")}>
-          <ListItemIcon>
-            <PersonAdd className="outraConta" color="success" fontSize="small" />
-          </ListItemIcon>
-          Inserir Outra Conta
-        </MenuItem>
-        }
-        <MenuItem onClick={() => logout()}>
-          <ListItemIcon>
-            <Logout className="logout" color="error" fontSize="small" />
-          </ListItemIcon>
-          Sair
-        </MenuItem>
-      </Menu>
-    </React.Fragment>
+
+            <MenuItem onClick={() => navigate("user/alter")}>
+              <ListItemIcon>
+                <ManageAccountsIcon fontSize="small" className="minhaConta" />Alterar Conta
+              </ListItemIcon>
+            </MenuItem>
+            <Divider />
+            {
+              isAdmin &&
+              <MenuItem onClick={() => navigate("user/new")}>
+                <ListItemIcon>
+                  <PersonAdd className="outraConta" color="success" fontSize="small" />
+                </ListItemIcon>
+                Inserir Outra Conta
+              </MenuItem>
+            }
+            <MenuItem onClick={() => logout()}>
+              <ListItemIcon>
+                <Logout className="logout" color="error" fontSize="small" />
+              </ListItemIcon>
+              Sair
+            </MenuItem>
+          </Menu>
+        </React.Fragment>
 
       </div>
 
       <Wrapper>
         <WrapperList>
           <table
-            cellPadding="0"
+            cellPadding="1"
             cellSpacing="0"
             style={{ tableLayout: "fixed", width: "100%" }}
           >
-            <TitleWrapper>
-              <TableTitle>Sistema</TableTitle>
-              <TableTitle>Usuario</TableTitle>
-              <TableTitle>Senha</TableTitle>
-              <TableTitle>Ação</TableTitle>
-            </TitleWrapper>
+
 
             <FilterWrapper>
               <BaselineTd>
                 <InputFilter
                   width="90%"
                   name="filterSistema"
+                  placeholder="Buscar por Robô"
                   value={descricao}
                   onChange={(e) => setDescricao(e.target.value)}
                 />
@@ -352,6 +388,7 @@ const handlePage = (e) => {
                 <InputFilter
                   width="90%"
                   value={usuario}
+                  placeholder="Buscar por Usuário"
                   onChange={(e) => setUsuario(e.target.value)}
                   name="filterUsuario"
                 />
@@ -361,10 +398,14 @@ const handlePage = (e) => {
                 <InputFilter
                   width="90%"
                   value={senha}
+                  placeholder="Buscar por Senha"
                   onChange={(e) => setSenha(e.target.value)}
                   name="filterSenha"
                 />
               </BaselineTd>
+
+              <BaselineTd></BaselineTd>
+              <BaselineTd></BaselineTd>
 
               <BuscarTd>
                 <Button
@@ -384,16 +425,31 @@ const handlePage = (e) => {
                   Novo
                 </Button>
               </BuscarTd>
-            
+
             </FilterWrapper>
+
+            <TitleWrapper>
+              <TableTitle>ROBÔ</TableTitle>
+              <TableTitle>USUÁRIO</TableTitle>
+              <TableTitle>SENHA</TableTitle>
+              <TableTitle>DATA INICIAL</TableTitle>
+              <TableTitle>DATA FINAL</TableTitle>
+              <TableTitle>EXCLUIR/ALTERAR</TableTitle>
+            </TitleWrapper>
+
             <tbody>
+
+
               {sistemas &&
+
                 sistemas.map((sistema) => {
                   return (
                     <ListWrapper key={sistema._id}>
                       <ContentText>{sistema.descricao}</ContentText>
                       <ContentText>{sistema.usuario}</ContentText>
                       <ContentText>{sistema.senha}</ContentText>
+                      <ContentText>{sistema.qtdInicial}</ContentText>
+                      <ContentText>{sistema.qtdFinal}</ContentText>
 
                       <EditarWrapper>
                         <IconButton
@@ -420,23 +476,23 @@ const handlePage = (e) => {
       </Wrapper>
       <div className="paginacao">
 
-      <InputLabel id="limit">Registros por Página:</InputLabel>
+        <InputLabel id="limit">Registros por Página:</InputLabel>
         <Select
           id="select"
           defaultValue={limit}
           label="limit"
           onChange={(e) => handleLimit(e)}
         >
-          <MenuItem  value="5">5</MenuItem>
-          <MenuItem  value="10">10</MenuItem>
-          <MenuItem  value="15">15</MenuItem>
+          <MenuItem value="5">5</MenuItem>
+          <MenuItem value="10">10</MenuItem>
+          <MenuItem value="15">15</MenuItem>
         </Select>
         <Stack>
-        <Pagination onChange={(e) => handlePage(e)} className="pg" count={totalPage} color="secondary" />
+          <Pagination onChange={(e) => handlePage(e)} className="pg" count={totalPage} color="secondary" />
         </Stack>
-     </div>
+      </div>
 
-    </div>    
+    </div>
   );
 };
 

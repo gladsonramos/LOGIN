@@ -11,18 +11,22 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import Person3Icon from '@mui/icons-material/Person3';
 
 const UpdatePage = () => {
-  const { update, descricaoContext, usuarioContext, senhaContext,idContext } =
+  const { update, descricaoContext, usuarioContext, senhaContext, qtdInicialContext, qtdFinalContext, idContext } =
     useContext(AuthContext);
   console.log(descricaoContext);
   const [descricao, setDescricao] = useState("");
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
+  const [qtdIncial, setQtdInicial] = useState("");
+  const [qtdFinal, setQtdFinal] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const desc = descricao ? descricao : descricaoContext
     const user = usuario ? usuario : usuarioContext
     const pass = senha ? senha : senhaContext
-    update(idContext,desc, user, pass);
+    const inicial = qtdIncial ? qtdIncial : qtdInicialContext
+    const final = qtdFinal ? qtdFinal : qtdFinalContext
+    update(idContext,desc, user, pass, inicial, final);
   };
   return (
     <div id="update">
@@ -69,6 +73,34 @@ const UpdatePage = () => {
               type="text"
               defaultValue={senhaContext}
               onChange={(e) => setSenha(e.target.value)}
+              startAdornment={
+                <LockIcon
+                  style={{ margin: "0.5ch" }}
+                  position="start"
+                ></LockIcon>
+              }
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 0, width: "17ch" }}>
+            <OutlinedInput
+              id="qtdInicial"
+              type="text"
+              defaultValue={qtdInicialContext}
+              onChange={(e) => setQtdInicial(e.target.value)}
+              startAdornment={
+                <LockIcon
+                  style={{ margin: "0.5ch" }}
+                  position="start"
+                ></LockIcon>
+              }
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 0, width: "17ch" }}>
+            <OutlinedInput
+              id="qtdFinal"
+              type="text"
+              defaultValue={qtdFinalContext}
+              onChange={(e) => setQtdFinal(e.target.value)}
               startAdornment={
                 <LockIcon
                   style={{ margin: "0.5ch" }}
