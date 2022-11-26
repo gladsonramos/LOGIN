@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseURL: "https://robos.onrender.com",   
+    baseURL: "https://tstewew.herokuapp.com",   
     
 })
 //Endpoints User
